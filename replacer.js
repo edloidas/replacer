@@ -6,11 +6,12 @@ replace
 ================
 */
 function replace( text ) {
-    var regex = /([\w\-]+)|((.|\n){1})/g;
-    var match = null,
+    var regex = /([\w\-]+)|((.|\n){1})/g,
+        match = null,
         str   = [];
+
     while ( ( match = regex.exec( text ) ) !== null ) {
-        if ( match[ 1 ] !== undefined ) {
+        if ( match[ 1 ] !== undefined ) { // any word or number
             for ( key in replacement ) {
                 if ( replacement[ key ].orig === match[ 1 ].toLowerCase() ) {
                     match[ 1 ] = replacement[ key ].alt;
@@ -18,7 +19,7 @@ function replace( text ) {
                 }
             }
             str.push( match[ 1 ] );
-        } else {
+        } else { // any other single character or new line symbol
             str.push( match[ 2 ] === undefined ? match[ 3 ] : match[ 2 ] );
         }
     }

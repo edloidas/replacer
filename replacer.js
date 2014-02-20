@@ -12,7 +12,7 @@ function replace( text ) {
 
     while ( ( match = regex.exec( text ) ) !== null ) {
         if ( match[ 1 ] !== undefined ) { // any word or number
-            for ( key in replacement ) {
+            for ( var key in replacement ) {
                 if ( replacement[ key ].orig === match[ 1 ].toLowerCase() ) {
                     match[ 1 ] = replacement[ key ].alt;
                     break;
